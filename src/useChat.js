@@ -5,8 +5,8 @@ import socketIOClient from "socket.io-client";
 const NEW_MESSAGE = 'newChatMessage';
 const NEW_USER_EVENT = "newUserJoined";
 
-// const SOCKET_SERVER_URL = "https://stark-beyond-54919.herokuapp.com/";
-const SOCKET_SERVER_URL = "http://localhost:4000";
+const SOCKET_SERVER_URL = "https://stark-beyond-54919.herokuapp.com/";
+// const SOCKET_SERVER_URL = "http://localhost:4000";
 
 
 const useChat = (roomId, nickname, sendAlert) => {
