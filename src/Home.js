@@ -14,9 +14,10 @@ const Home = () => {
     return (
     <div className="home-container">
       <div>
-        <h1>Welcome to Frankie Chat</h1>
+        <h1>Join a chatroom</h1>
       </div>
       <input 
+        style={{ marginBottom: 25 }}
         type="text"
         placeholder="Nickname"
         value={nickname}
