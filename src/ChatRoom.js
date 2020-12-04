@@ -1,13 +1,16 @@
 import React from "react";
 
 import useChat from "./useChat";
+import { useAlert } from 'react-alert';
 
 import "./chatRoom.css";
 
 const ChatRoom = (props) => {
+    const alert = useAlert();
+
     const { roomId } = props.match.params;
     const { nickname } = props.match.params;
-    const [messages, sendMessage] = useChat(roomId);
+    const [messages, sendMessage] = useChat(roomId, nickname, (msg) => alert.show(msg));
     const [newMessage, setNewMessage] = React.useState("");
 
     const handleNewMessageChange = (event) => {

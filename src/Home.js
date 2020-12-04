@@ -31,7 +31,6 @@ const Home = () => {
         onChange={handleRoomNameChange}
         className="text-input-field"
       />
-      {console.log(nickname)}
       <Link to={`/${roomName}/${nickname}`} className="enter-room-button">
         Join room
       </Link>
