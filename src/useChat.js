@@ -5,13 +5,15 @@ import socketIOClient from "socket.io-client";
 const NEW_MESSAGE = 'newChatMessage';
 const NEW_USER_EVENT = "newUserJoined";
 
-const SOCKET_SERVER_URL = "https://stark-beyond-54919.herokuapp.com/";
-// const SOCKET_SERVER_URL = "http://localhost:4000";
+// const SOCKET_SERVER_URL = "https://stark-beyond-54919.herokuapp.com/";
+const SOCKET_SERVER_URL = "http://localhost:4000";
 
 
 const useChat = (roomId, nickname, sendAlert) => {
     const [messages, setMessages] = useState([]);
     const socketRef = useRef();
+    const send = useRef();
+    send.current = sendAlert;
 
     useEffect(() => {
         //Create WebSocket connection with the server
@@ -20,7 +22,7 @@ const useChat = (roomId, nickname, sendAlert) => {
         });
 
         //Listens for incoming messages
-        //Tags messages wheter sent or received
+        //Tags messages whether sent or received
         socketRef.current.on(NEW_MESSAGE, (message) => {
             const incomingMessage = {
                 ...message,
@@ -30,14 +32,14 @@ const useChat = (roomId, nickname, sendAlert) => {
         });
         
         socketRef.current.on(NEW_USER_EVENT, (message) => {
-            sendAlert(message);
+            send.current(message);
         })
 
         //Destroys the socket reference when component is unmounted
         return () => {
             socketRef.current.disconnect();
         }
-    }, [roomId, nickname, sendAlert]);
+    }, [roomId, nickname]);
 
 
     const sendMessage = (nickname, messageBody) => {
